@@ -68,6 +68,12 @@
 
 @end
 
+@protocol ABLockScreenSetupDelegate <NSObject>
+@required
+- (void)setupWasSuccessfulWithCode:(NSString *)code;
+- (void)setupWasCancelled;
+@end
+
 /**
  The ABLockScreenController responsible for providing a pin entry screen for the user. Depending on the device type the controller will render an iPhone or iPad based view
  It is designed to be implemented from within a UInavigtaionController. See the example code for more detail.
@@ -100,21 +106,27 @@
  */
 @property (nonatomic, weak) id<ABLockScreenDelegate> delegate;
 
+@property (nonatomic, weak) id<ABLockScreenSetupDelegate> setupDelegate;
+
 
 /**
  Convenience method to init with a set delegate
  */
-- (id)initWithDelegate:(id<ABLockScreenDelegate>)delegate;
+- (id)initWithABLockScreenDelegate:(id<ABLockScreenDelegate>)delegate;
+
+- (id)initWithABLockScreenSetupDelegate:(id<ABLockScreenSetupDelegate>)delegate;
 
 /**
  Resets the attempts for the controller. If there is no attempt limit this will do nothing
  */
-- (void)resetAttempts;
+- (void)resetErrorLabels;
 
 /**
  Resets the lock screen to it's inital value (clears all digits inputted). Does not reset attempts
  */
 - (void)resetLockScreen;
+
+- (void)resetSetupPins;
 
 
 @end

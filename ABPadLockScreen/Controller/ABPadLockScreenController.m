@@ -43,6 +43,12 @@ typedef enum {
     
 }ABLockPadDeviceType;
 
+typedef enum {
+    ABLockPadModeLock = 0,
+    ABLockPadModeSetup = 1
+    
+}ABLockPadMode;
+
 @interface ABPadLockScreenController() <UITextFieldDelegate>
 
 /**
@@ -59,6 +65,12 @@ typedef enum {
  How many unlock attempts the user has performed
  */
 @property (nonatomic, assign) NSInteger attempts;
+
+@property (nonatomic, strong) NSString *firstPinEntry;
+@property (nonatomic, strong) NSString *secondPinEntry;
+@property (nonatomic, assign) ABLockPadMode mode;
+
+
 
 /**
  Called when the user selects the cancel button
@@ -102,7 +114,7 @@ typedef enum {
 
 #pragma mark -
 #pragma mark - init Methods
-- (id)initWithDelegate:(id<ABLockScreenDelegate>)delegate
+- (id)initWithABLockScreenDelegate:(id<ABLockScreenDelegate>)delegate
 {
     self = [super init];
     if (self)
@@ -110,6 +122,20 @@ typedef enum {
         _delegate = delegate;
         _currentPin = @"";
         _attemptLimit = 0;
+		_mode = ABLockPadModeLock;
+    }
+    
+    return self;
+}
+
+- (id)initWithABLockScreenSetupDelegate:(id<ABLockScreenSetupDelegate>)delegate
+{
+    self = [super init];
+    if (self)
+    {
+        _setupDelegate = delegate;
+        _currentPin = @"";
+		_mode = ABLockPadModeSetup;
     }
     
     return self;
@@ -152,6 +178,10 @@ typedef enum {
         [ipadView.zero addTarget:self action:@selector(digitButtonselected:) forControlEvents:UIControlEventTouchUpInside];
         [ipadView.back addTarget:self action:@selector(backButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
     }
+	
+	if (self.mode == ABLockPadModeSetup) {
+		self.subtitle = @"Enter a passcode";
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -164,7 +194,7 @@ typedef enum {
 
 #pragma mark -
 #pragma mark - Public Methods
-- (void)resetAttempts
+- (void)resetErrorLabels
 {
     self.attempts = 0;
     
@@ -180,6 +210,12 @@ typedef enum {
         ipadView.errorbackView.alpha = 0.0f;
         ipadView.subtitleLabel.text = self.subtitle;
     }
+}
+
+- (void)resetSetupPins
+{
+	self.firstPinEntry = nil;
+	self.secondPinEntry = nil;
 }
 
 - (void)resetLockScreen
@@ -205,6 +241,16 @@ typedef enum {
             relevantPinImage.image = [UIImage imageNamed:@"EntryBox"];
         }
     }
+}
+
+- (void)animateLockBoxes
+{
+	UIView *relevantVeiw = iPhoneView;
+    
+    if (self.deviceType == ABLockPadDeviceTypeiPad)
+        relevantVeiw = ipadView;
+	
+	
 }
 
 - (void)setAttemptLimit:(NSInteger)attemptLimit
@@ -236,12 +282,16 @@ typedef enum {
 
 - (void)cancelButtonSelected:(id)sender
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(unlockWasCancelled)])
-    {
+    if (self.mode == ABLockPadModeLock && self.delegate && [self.delegate respondsToSelector:@selector(unlockWasCancelled)]) {
         [self.delegate unlockWasCancelled];
         [self resetLockScreen];
-        [self resetAttempts];
+        [self resetErrorLabels];
     }
+	if (self.mode == ABLockPadModeSetup && self.setupDelegate && [self.setupDelegate respondsToSelector:@selector(setupWasCancelled)]) {
+		[self.setupDelegate setupWasCancelled];
+		[self resetLockScreen];
+		[self resetSetupPins];
+	}
 }
 
 - (void)digitButtonselected:(id)sender
@@ -249,7 +299,7 @@ typedef enum {
     UIButton *digitButton = (UIButton *)sender;
     
     NSString *digitAsString = [NSString stringWithFormat:@"%d", digitButton.tag];
-
+	
     if ([[ipadView viewWithTag:self.currentPin.length + 11] isKindOfClass:[UIImageView class]])
     {
         UIImageView *relevantPinImage = (UIImageView *)[ipadView viewWithTag:self.currentPin.length + 11];
@@ -257,13 +307,13 @@ typedef enum {
     }
     
     self.currentPin = [NSString stringWithFormat:@"%@%@", self.currentPin, digitAsString];
-
+	
     if (self.currentPin.length == 4)
         [self performSelector:@selector(checkPin) withObject:Nil afterDelay:0.1];
 }
 
 - (void)backButtonSelected:(id)sender
-{   
+{
     if ([[ipadView viewWithTag:self.currentPin.length + 10] isKindOfClass:[UIImageView class]])
     {
         UIImageView *relevantPinImage = (UIImageView *)[ipadView viewWithTag:self.currentPin.length + 10];
@@ -276,42 +326,69 @@ typedef enum {
 
 - (void)checkPin
 {
-    self.attempts ++;
-    
-    if ([self.currentPin isEqualToString:self.pin])
-    {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(unlockWasSuccessful)])
-        {
-            [self.delegate unlockWasSuccessful];
-            [self resetAttempts];
-        }
-
-    }
-    else
-    {
-        if (self.attemptLimit != kNoAttemptLimit)
-        {
-            [self failedAttemptWithRemaningAttempts:self.attemptLimit - self.attempts];
-        }
-        else
-        {
-            [self failedFinalAttempt];
-        }
-
-        if (self.delegate && [self.delegate respondsToSelector:@selector(unlockWasUnsuccessful:afterAttemptNumber:)])
-        {
-            [self.delegate unlockWasUnsuccessful:self.currentPin afterAttemptNumber:self.attempts];
-        }
-        
-        if (self.attempts == self.attemptLimit)
-        {
-            if (self.delegate && [self.delegate respondsToSelector:@selector(attemptsExpired)])
-                [self.delegate attemptsExpired];
-            [self lockPad];
-        }
-    }
-   
-    [self resetLockScreen];    
+	if (self.mode == ABLockPadModeLock) {
+		
+		self.attempts ++;
+		
+		if ([self.currentPin isEqualToString:self.pin])
+		{
+			if (self.delegate && [self.delegate respondsToSelector:@selector(unlockWasSuccessful)])
+			{
+				[self.delegate unlockWasSuccessful];
+				[self resetErrorLabels];
+			}
+			
+		}
+		else
+		{
+			if (self.attemptLimit != kNoAttemptLimit)
+			{
+				[self failedAttemptWithRemaningAttempts:self.attemptLimit - self.attempts];
+			}
+			else
+			{
+				[self failedFinalAttempt];
+			}
+			
+			if (self.delegate && [self.delegate respondsToSelector:@selector(unlockWasUnsuccessful:afterAttemptNumber:)])
+			{
+				[self.delegate unlockWasUnsuccessful:self.currentPin afterAttemptNumber:self.attempts];
+			}
+			
+			if (self.attempts == self.attemptLimit)
+			{
+				if (self.delegate && [self.delegate respondsToSelector:@selector(attemptsExpired)])
+					[self.delegate attemptsExpired];
+				[self lockPad];
+			}
+		}
+		
+		[self resetLockScreen];
+	}
+	
+	if (self.mode == ABLockPadModeSetup) {
+		
+		if (!self.firstPinEntry) {
+			self.firstPinEntry = self.currentPin;
+			self.currentPin = @"";
+			self.secondPinEntry = nil;
+			[self animateLockBoxes];
+			[self resetLockScreen];
+			self.subtitle = @"Confirm passcode";
+		} else if (!self.secondPinEntry) {
+			self.secondPinEntry = self.currentPin;
+			self.currentPin = @"";
+			if ([self.firstPinEntry isEqualToString:self.secondPinEntry]) {
+				if (self.setupDelegate && [self.setupDelegate respondsToSelector:@selector(setupWasSuccessfulWithCode:)]) {
+					[self.setupDelegate setupWasSuccessfulWithCode:self.secondPinEntry];
+				}
+			} else {
+				[self codeSetupMismatch];
+			}
+			[self resetSetupPins];
+			[self resetLockScreen];
+		}
+	}
 }
 
 - (void)lockPad
@@ -377,9 +454,33 @@ typedef enum {
     }
 }
 
+- (void)codeSetupMismatch
+{
+    if (self.deviceType == ABLockPadDeviceTypeiPhone)
+    {
+        iPhoneView.remainingAttemptsLabel.text = @"Passcodes did not match. Try again.";
+		if (iPhoneView.errorbackView.alpha == 0.0f)
+        {
+            [UIView animateWithDuration:0.4f animations:^{
+                iPhoneView.errorbackView.alpha = 1.0f;
+            }];
+        }
+    }
+    else if (self.deviceType == ABLockPadDeviceTypeiPad)
+    {
+        ipadView.remainingAttemptsLabel.text = @"Passcodes did not match. Try again.";
+		if (ipadView.errorbackView.alpha == 0.0f)
+        {
+            [UIView animateWithDuration:0.4f animations:^{
+                ipadView.errorbackView.alpha = 1.0f;
+            }];
+        }
+    }
+}
+
 #pragma mark -
 #pragma mark - UITextFieldDelegate Methods
- - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if (string.length > 0)
     {
