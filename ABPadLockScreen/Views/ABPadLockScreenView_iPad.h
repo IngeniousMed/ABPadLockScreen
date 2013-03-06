@@ -15,39 +15,39 @@
 /**
  The entry boxes for the view
  */
-@property (nonatomic, strong) UIImageView *box1;
-@property (nonatomic, strong) UIImageView *box2;
-@property (nonatomic, strong) UIImageView *box3;
-@property (nonatomic, strong) UIImageView *box4;
+@property (nonatomic, strong) IBOutlet UIImageView *box1;
+@property (nonatomic, strong) IBOutlet UIImageView *box2;
+@property (nonatomic, strong) IBOutlet UIImageView *box3;
+@property (nonatomic, strong) IBOutlet UIImageView *box4;
 
 /**
  Displays the subittle text to the user
  */
-@property (nonatomic, strong) UILabel *subtitleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *subtitleLabel;
 
 /**
  Displays the remaining alerts to the user
  */
-@property (nonatomic, strong) UILabel *remainingAttemptsLabel;
+@property (nonatomic, strong) IBOutlet UILabel *remainingAttemptsLabel;
 
 /**
  Displays the red alert background for the remainingAttemptsLabel
  */
-@property (nonatomic, strong) UIImageView *errorbackView;
+@property (nonatomic, strong) IBOutlet UIImageView *errorbackView;
 
 /** Emulated Keyboard Buttons */
-@property (nonatomic, strong) UIButton *one;
-@property (nonatomic, strong) UIButton *two;
-@property (nonatomic, strong) UIButton *three;
-@property (nonatomic, strong) UIButton *four;
-@property (nonatomic, strong) UIButton *five;
-@property (nonatomic, strong) UIButton *six;
-@property (nonatomic, strong) UIButton *seven;
-@property (nonatomic, strong) UIButton *eight;
-@property (nonatomic, strong) UIButton *nine;
-@property (nonatomic, strong) UIButton *zero;
-@property (nonatomic, strong) UIButton *back;
-@property (nonatomic, strong) UIButton *blank;
+@property (nonatomic, strong) IBOutlet UIButton *one;
+@property (nonatomic, strong) IBOutlet UIButton *two;
+@property (nonatomic, strong) IBOutlet UIButton *three;
+@property (nonatomic, strong) IBOutlet UIButton *four;
+@property (nonatomic, strong) IBOutlet UIButton *five;
+@property (nonatomic, strong) IBOutlet UIButton *six;
+@property (nonatomic, strong) IBOutlet UIButton *seven;
+@property (nonatomic, strong) IBOutlet UIButton *eight;
+@property (nonatomic, strong) IBOutlet UIButton *nine;
+@property (nonatomic, strong) IBOutlet UIButton *zero;
+@property (nonatomic, strong) IBOutlet UIButton *back;
+@property (nonatomic, strong) IBOutlet UIButton *blank;
 
 
 @end

@@ -33,6 +33,8 @@
 #define lockScreenWidth 320
 #define lockScreenHeight 460
 
+@class ABPadLockScreenView_iPad;
+
 /**
  Methods that the Lock Screen will fire when it has completed an important action
  */
@@ -42,7 +44,7 @@
  Called when the unlock was completed successfully
  @required
  */
-- (void)unlockWasSuccessful;
+- (BOOL)unlockWithCode:(NSString *)code;
 
 /**
  Called when an unlock was unsuccessfully, providing the entry code and the attempt number
@@ -80,6 +82,9 @@
  */
 @interface ABPadLockScreenController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIView *animationView;
+@property (nonatomic, strong) IBOutlet ABPadLockScreenView_iPad *iPadView;
+
 /**
  The passcode required to unlock the pin screen
  */
@@ -94,6 +99,7 @@
  The subtitle text for the lock screen
  */
 @property (nonatomic, strong) NSString *subtitle;
+@property (nonatomic, strong) UILabel *subtitleLabel;
 
 /**
  The attempt limit for the lock screen. A value of '0' indicates no limit.
@@ -128,5 +134,7 @@
 
 - (void)resetSetupPins;
 
+- (IBAction)digitButtonselected:(id)sender;
+- (IBAction)backButtonSelected:(id)sender;
 
 @end

@@ -33,7 +33,7 @@
 {
     if (!self.pinScreen)
     {
-        self.pinScreen = [[ABPadLockScreenController alloc] initWithDelegate:self];
+        self.pinScreen = [[ABPadLockScreenController alloc] initWithABLockScreenDelegate:self];
         self.pinScreen.pin = @"1234";
         self.pinScreen.attemptLimit = 0;
         self.pinScreen.title = @"Enter Pin";
