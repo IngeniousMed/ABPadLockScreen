@@ -129,11 +129,12 @@ typedef enum {
 	if (self.mode == ABLockPadModeSetup) {
 		self.title = @"Setup Passcode";
 		self.subtitle = @"Enter a passcode";
+		UIBarButtonItem *cancelBarButtonitem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonSelected:)];
+		[[self navigationItem] setRightBarButtonItem:cancelBarButtonitem animated:NO];
+
 	}
     
-//    UIBarButtonItem *cancelBarButtonitem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonSelected:)];
-//    [[self navigationItem] setRightBarButtonItem:cancelBarButtonitem animated:NO];
-    
+       
 	self.subtitleLabel = ipadView.subtitleLabel;
     
 	self.subtitleLabel.text = self.subtitle;
