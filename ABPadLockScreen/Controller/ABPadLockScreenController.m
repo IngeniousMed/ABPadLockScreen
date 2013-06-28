@@ -342,4 +342,23 @@ typedef enum {
 	[self setAnimationView:nil];
 	[super viewDidUnload];
 }
+
+
+//This fix will allow the screen to work with iPad applications that have the interface orientation set to Horizontal.
+//So we don't display the pin screen in a different orientation related to the iPad.
+#pragma mark - Interface orientation for iOS 5
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    if (interfaceOrientation == UIInterfaceOrientationPortrait)
+    {
+        return YES;
+    }else if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight)  {
+        return YES;
+    }else {
+        return NO;
+    }
+}
+
 @end
