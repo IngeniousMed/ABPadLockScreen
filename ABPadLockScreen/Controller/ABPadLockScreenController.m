@@ -124,7 +124,7 @@ typedef enum {
 {
     [super viewDidLoad];
 	
-	[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"toolbar-modal.png"] forBarMetrics:UIBarMetricsDefault];
+	[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"modelview_toolbar.png"] forBarMetrics:UIBarMetricsDefault];
 	
 	if (self.mode == ABLockPadModeSetup) {
 		self.title = @"Setup Passcode";
