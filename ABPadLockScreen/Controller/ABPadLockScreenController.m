@@ -129,7 +129,8 @@ typedef enum {
 	if (self.mode == ABLockPadModeSetup) {
 		self.title = @"Setup Passcode";
 		self.subtitle = @"Enter a passcode";
-		UIBarButtonItem *cancelBarButtonitem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonSelected:)];
+		
+		UIBarButtonItem *cancelBarButtonitem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(cancelButtonSelected:)];
 		[[self navigationItem] setRightBarButtonItem:cancelBarButtonitem animated:NO];
 
 	}
