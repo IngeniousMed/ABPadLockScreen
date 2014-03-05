@@ -56,7 +56,7 @@ typedef enum {
 @property (nonatomic, strong) NSString *firstPinEntry;
 @property (nonatomic, strong) NSString *secondPinEntry;
 @property (nonatomic, assign) ABLockPadMode mode;
-
+@property (nonatomic, strong)UIImageView *navBarHairlineImageView;
 
 
 /**
@@ -92,7 +92,13 @@ typedef enum {
 #pragma mark - init Methods
 - (id)initWithABLockScreenDelegate:(id<ABLockScreenDelegate>)delegate
 {
-    self = [self initWithNibName:@"ABPadLockScreenController" bundle:nil];
+	NSString *nibName = nil;
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+		nibName = @"ABPadLockScreenController-iPad";
+	} else {
+		nibName = @"ABPadLockScreenController";
+	}
+    self = [self initWithNibName:nibName bundle:nil];
     if (self)
     {
         _delegate = delegate;
@@ -106,7 +112,13 @@ typedef enum {
 
 - (id)initWithABLockScreenSetupDelegate:(id<ABLockScreenSetupDelegate>)delegate
 {
-    self = [self initWithNibName:@"ABPadLockScreenController" bundle:nil];
+	NSString *nibName = nil;
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+		nibName = @"ABPadLockScreenController-iPad";
+	} else {
+		nibName = @"ABPadLockScreenController";
+	}
+    self = [self initWithNibName:nibName bundle:nil];
     if (self)
     {
         _setupDelegate = delegate;
@@ -123,16 +135,13 @@ typedef enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-	[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"modelview_toolbar.png"] forBarMetrics:UIBarMetricsDefault];
-	
+	[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bar_button_clear.png"] forBarMetrics:UIBarMetricsDefault];
+	self.navBarHairlineImageView=[self findHairlineImageViewUnder:self.navigationController.navigationBar];
 	if (self.mode == ABLockPadModeSetup) {
-		self.title = @"Setup Passcode";
-		self.subtitle = @"Enter a passcode";
-		
 		UIBarButtonItem *cancelBarButtonitem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(cancelButtonSelected:)];
 		[cancelBarButtonitem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Helvetica" size:17], UITextAttributeFont,nil] forState:UIControlStateNormal];
 		[[self navigationItem] setRightBarButtonItem:cancelBarButtonitem animated:NO];
+		self.subtitle  = @"Setup Passcode";
 
 	}
     
@@ -140,6 +149,27 @@ typedef enum {
 	self.subtitleLabel = ipadView.subtitleLabel;
     
 	self.subtitleLabel.text = self.subtitle;
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navBarHairlineImageView.hidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navBarHairlineImageView.hidden = NO;
+}
+- (UIImageView *)findHairlineImageViewUnder:(UIView *)view {
+    if ([view isKindOfClass:UIImageView.class] && view.bounds.size.height <= 1.0) {
+		return (UIImageView *)view;
+    }
+    for (UIView *subview in view.subviews) {
+        UIImageView *imageView = [self findHairlineImageViewUnder:subview];
+        if (imageView) {
+            return imageView;
+        }
+    }
+    return nil;
 }
 
 #pragma mark -
@@ -266,7 +296,7 @@ typedef enum {
 			self.secondPinEntry = nil;
 			[self animateLockBoxes];
 			[self resetLockScreen];
-			self.subtitleLabel.text = @"Confirm passcode";
+			self.subtitleLabel.text = @"Confirm Passcode";
 		} else if (!self.secondPinEntry) {
 			self.secondPinEntry = self.currentPin;
 			self.currentPin = @"";
