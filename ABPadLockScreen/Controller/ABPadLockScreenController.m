@@ -136,6 +136,7 @@ typedef enum {
 {
     [super viewDidLoad];
 	[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bar_button_clear.png"] forBarMetrics:UIBarMetricsDefault];
+	self.navigationController.navigationBar.hidden = YES;
 	self.navBarHairlineImageView=[self findHairlineImageViewUnder:self.navigationController.navigationBar];
 	if (self.mode == ABLockPadModeSetup) {
 		NSString *ver = [[UIDevice currentDevice] systemVersion];
@@ -147,6 +148,7 @@ typedef enum {
 		else{
 			[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bar_button_clear.png"] forBarMetrics:UIBarMetricsDefault];
 		}
+		self.navigationController.navigationBar.hidden = NO;
 		UIBarButtonItem *cancelBarButtonitem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(cancelButtonSelected:)];
 		[cancelBarButtonitem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Helvetica" size:17], UITextAttributeFont,nil] forState:UIControlStateNormal];
 		[[self navigationItem] setRightBarButtonItem:cancelBarButtonitem animated:NO];
