@@ -128,6 +128,12 @@
 - (void)resetErrorLabels;
 
 /**
+ The title text for the lock screen
+ */
+@property (strong, nonatomic) IBOutlet UIButton *deleteButton;
+
+
+/**
  Resets the lock screen to it's inital value (clears all digits inputted). Does not reset attempts
  */
 - (void)resetLockScreen;

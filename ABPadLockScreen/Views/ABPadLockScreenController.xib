@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ABPadLockScreenController">
             <connections>
                 <outlet property="animationView" destination="59" id="68"/>
+                <outlet property="deleteButton" destination="15" id="4wR-0B-2JV"/>
                 <outlet property="view" destination="1" id="47"/>
             </connections>
         </placeholder>
@@ -184,7 +185,7 @@
                             <rect key="frame" x="188" y="317" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" title="Delete">
+                            <state key="normal" title="Cancel">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -193,21 +194,6 @@
                             </state>
                             <connections>
                                 <action selector="backButtonSelected:" destination="-1" eventType="touchUpInside" id="58"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="1221" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yyQ-Wa-gzg">
-                            <rect key="frame" x="32" y="317" width="70" height="70"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" title="Dismiss">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="highlighted">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="dismissModalViewController:" destination="-1" eventType="touchUpInside" id="Zq1-mR-hVr"/>
                             </connections>
                         </button>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" id="22">

@@ -139,6 +139,7 @@ typedef enum {
 	self.navigationController.navigationBar.hidden = YES;
 	self.navBarHairlineImageView=[self findHairlineImageViewUnder:self.navigationController.navigationBar];
 	if (self.mode == ABLockPadModeSetup) {
+		[self.deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
 		NSString *ver = [[UIDevice currentDevice] systemVersion];
 		int ver_int = [ver intValue];
 		if(ver_int<7)
@@ -257,6 +258,8 @@ typedef enum {
 
 - (IBAction)digitButtonselected:(id)sender
 {
+	[self.deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
+	
     UIButton *digitButton = (UIButton *)sender;
     
     NSString *digitAsString = [NSString stringWithFormat:@"%d", digitButton.tag];
@@ -282,12 +285,15 @@ typedef enum {
     }
     
     if (self.currentPin.length > 0)
+	{
         self.currentPin = [self.currentPin substringWithRange:NSMakeRange(0, self.currentPin.length - 1)];
-}
-
-- (IBAction)dismissModalViewController:(id)sender
-{
-	[self cancelButtonSelected:self];
+	}
+	else if(self.mode != ABLockPadModeSetup)
+	{
+		[self cancelButtonSelected:self];
+	}
+	if (self.currentPin.length==0 && self.mode != ABLockPadModeSetup)
+		[self.deleteButton setTitle:@"Cancel" forState:UIControlStateNormal];
 }
 
 - (void)checkPin
