@@ -142,6 +142,5 @@
 
 - (IBAction)digitButtonselected:(id)sender;
 - (IBAction)backButtonSelected:(id)sender;
-- (IBAction)dismissModalViewController:(id)sender;
 
 @end
