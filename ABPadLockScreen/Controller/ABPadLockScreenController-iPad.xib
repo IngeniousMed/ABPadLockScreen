@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ABPadLockScreenController">
@@ -181,7 +181,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="1221" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="15">
-                            <rect key="frame" x="561" y="521" width="75" height="75"/>
+                            <rect key="frame" x="555" y="541" width="75" height="75"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal" title="Delete">
@@ -193,6 +193,21 @@
                             </state>
                             <connections>
                                 <action selector="backButtonSelected:" destination="-1" eventType="touchUpInside" id="58"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="1221" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MG4-3P-vrA">
+                            <rect key="frame" x="389" y="541" width="75" height="75"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="Dismiss">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="dismissModalViewController:" destination="-1" eventType="touchUpInside" id="oEU-Bt-rk3"/>
                             </connections>
                         </button>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" enabled="NO" id="22">
@@ -269,25 +284,25 @@
     </objects>
     <resources>
         <image name="0-selected.png" width="75" height="75"/>
-        <image name="0.png" width="75" height="75"/>
+        <image name="0.png" width="76" height="75"/>
         <image name="1-selected.png" width="75" height="75"/>
-        <image name="1.png" width="75" height="75"/>
+        <image name="1.png" width="76" height="75"/>
         <image name="2-selected.png" width="75" height="75"/>
-        <image name="2.png" width="75" height="75"/>
+        <image name="2.png" width="76" height="75"/>
         <image name="3-selected.png" width="75" height="75"/>
-        <image name="3.png" width="75" height="75"/>
+        <image name="3.png" width="76" height="75"/>
         <image name="4-selected.png" width="75" height="75"/>
-        <image name="4.png" width="75" height="75"/>
+        <image name="4.png" width="76" height="75"/>
         <image name="5-selected.png" width="75" height="75"/>
-        <image name="5.png" width="75" height="75"/>
+        <image name="5.png" width="76" height="75"/>
         <image name="6-selected.png" width="75" height="75"/>
-        <image name="6.png" width="75" height="75"/>
+        <image name="6.png" width="76" height="75"/>
         <image name="7-selected.png" width="106" height="54"/>
-        <image name="7.png" width="75" height="75"/>
+        <image name="7.png" width="76" height="75"/>
         <image name="8-selected.png" width="75" height="75"/>
-        <image name="8.png" width="75" height="75"/>
+        <image name="8.png" width="76" height="75"/>
         <image name="9-selected.png" width="75" height="75"/>
-        <image name="9.png" width="75" height="75"/>
+        <image name="9.png" width="76" height="75"/>
         <image name="EntryBox.png" width="13" height="13"/>
         <image name="logo_pin.png" width="58" height="58"/>
     </resources>

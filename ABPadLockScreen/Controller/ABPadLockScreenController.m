@@ -285,6 +285,11 @@ typedef enum {
         self.currentPin = [self.currentPin substringWithRange:NSMakeRange(0, self.currentPin.length - 1)];
 }
 
+- (IBAction)dismissModalViewController:(id)sender
+{
+	[self cancelButtonSelected:self];
+}
+
 - (void)checkPin
 {
 	if (self.mode == ABLockPadModeLock) {
