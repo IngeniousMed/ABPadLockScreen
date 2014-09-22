@@ -31,6 +31,7 @@
 #import "ABPadLockScreenView_iPad.h"
 #import "ABPadLockScreenView_iPhone.h"
 #import <LocalAuthentication/LocalAuthentication.h>
+#import "SFHFKeychainUtils.h"
 
 #define ipadView ((ABPadLockScreenView_iPad *)[self view])
 
@@ -162,6 +163,83 @@ typedef enum {
 	self.subtitleLabel = ipadView.subtitleLabel;
     
 	self.subtitleLabel.text = self.subtitle;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
+	if(self.mode == ABLockPadModeLock)
+	{
+		
+		LAContext *defaultContext = [[LAContext alloc] init];
+		NSError *error;
+		
+		if([defaultContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error])
+		{
+			NSUserDefaults *defaults      = [NSUserDefaults standardUserDefaults];
+			NSString       *lastGroupName = [defaults stringForKey:kUserDefaultsKeyGroupName];
+			NSString       *lastUserId    = [defaults stringForKey:kUserDefaultsKeyUserName];
+			NSString *passcode = [SFHFKeychainUtils getPasswordForUsername:[NSString stringWithFormat:@"%@||%@||%@", lastGroupName, lastUserId, kIngeniousAppDomainIdentifier] andServiceName:kIngeniousAppDomainIdentifier error:&error];
+			
+			defaultContext.localizedFallbackTitle = @"Enter PIN";
+			if(passcode.length > 0)
+			{
+				[defaultContext evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
+							   localizedReason:@"Login to Ingenious Med"
+										 reply:^(BOOL success, NSError *error) {
+											 if (success)
+											 {
+												 dispatch_sync(dispatch_get_main_queue(), ^(void){
+												 
+													 self.currentPin = passcode;
+													 [self checkPin];
+												 });
+											 }
+											 else
+											 {
+												 switch (error.code)
+												 {
+													 case LAErrorAuthenticationFailed:
+														 return;
+														 break;
+													 case LAErrorUserCancel:
+														 return;
+														 
+														 break;
+													 case LAErrorUserFallback:
+														 return;
+														 
+														 break;
+													 case LAErrorSystemCancel:
+														 return;
+														 
+														 break;
+													 case LAErrorPasscodeNotSet:
+														 return;
+														 
+														 break;
+													 case LAErrorTouchIDNotAvailable:
+														 return;
+														 
+														 break;
+													 case LAErrorTouchIDNotEnrolled:
+														 return;
+														 
+														 break;
+														 
+													 default:
+														 return;
+														 break;
+												 }
+											 }
+										 }];
+
+			}
+		}
+		
+
+	}
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -302,9 +380,13 @@ typedef enum {
 	if (self.mode == ABLockPadModeLock) {
 		if (self.delegate && [self.delegate respondsToSelector:@selector(unlockWithCode:)]) {
 			BOOL success = [self.delegate unlockWithCode:self.currentPin];
-			if (!success) {
-				
-			} else {
+			if (success)
+			{
+				NSUserDefaults *defaults      = [NSUserDefaults standardUserDefaults];
+				NSString       *lastGroupName = [defaults stringForKey:kUserDefaultsKeyGroupName];
+				NSString       *lastUserId    = [defaults stringForKey:kUserDefaultsKeyUserName];
+				[SFHFKeychainUtils storeUsername:[NSString stringWithFormat:@"%@||%@||%@", lastGroupName, lastUserId, kIngeniousAppDomainIdentifier] andPassword:self.secondPinEntry forServiceName:kIngeniousAppDomainIdentifier updateExisting:YES error:nil];
+
 				[self resetErrorLabels];
 				[self resetLockScreen];
 			}
@@ -324,6 +406,12 @@ typedef enum {
 			self.secondPinEntry = self.currentPin;
 			self.currentPin = @"";
 			if ([self.firstPinEntry isEqualToString:self.secondPinEntry]) {
+				
+				NSUserDefaults *defaults      = [NSUserDefaults standardUserDefaults];
+				NSString       *lastGroupName = [defaults stringForKey:kUserDefaultsKeyGroupName];
+				NSString       *lastUserId    = [defaults stringForKey:kUserDefaultsKeyUserName];
+				[SFHFKeychainUtils storeUsername:[NSString stringWithFormat:@"%@||%@||%@", lastGroupName, lastUserId, kIngeniousAppDomainIdentifier] andPassword:self.secondPinEntry forServiceName:kIngeniousAppDomainIdentifier updateExisting:YES error:nil];
+
 				if (self.setupDelegate && [self.setupDelegate respondsToSelector:@selector(setupWasSuccessfulWithCode:)]) {
 					[self.setupDelegate setupWasSuccessfulWithCode:self.secondPinEntry];
 				}
