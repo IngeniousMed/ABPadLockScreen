@@ -30,6 +30,7 @@
 #import "ABPadLockScreenController.h"
 #import "ABPadLockScreenView_iPad.h"
 #import "ABPadLockScreenView_iPhone.h"
+#import <LocalAuthentication/LocalAuthentication.h>
 
 #define ipadView ((ABPadLockScreenView_iPad *)[self view])
 
