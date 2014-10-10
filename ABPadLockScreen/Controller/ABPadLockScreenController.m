@@ -153,7 +153,7 @@ typedef enum {
 		}
 		self.navigationController.navigationBar.hidden = NO;
 		UIBarButtonItem *cancelBarButtonitem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(cancelButtonSelected:)];
-		[cancelBarButtonitem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Helvetica" size:17], UITextAttributeFont,nil] forState:UIControlStateNormal];
+		[cancelBarButtonitem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Helvetica" size:17], NSFontAttributeName,nil] forState:UIControlStateNormal];
 		[[self navigationItem] setRightBarButtonItem:cancelBarButtonitem animated:NO];
 		self.subtitle  = @"Setup Passcode";
 

@@ -20,9 +20,7 @@
 {
     self = [super initWithFrame:frame];
     if (self)
-    {
-        self.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
-        
+    {        
         self.hiddenTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 20, 1)];
         self.hiddenTextField.keyboardAppearance = UIKeyboardAppearanceDefault;
         self.hiddenTextField.keyboardType = UIKeyboardTypeNumberPad;
