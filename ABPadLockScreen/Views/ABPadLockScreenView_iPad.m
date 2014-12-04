@@ -23,7 +23,7 @@
 - (UIButton *)getStyledButtonForNumber:(NSInteger)number
 {
     UIButton * returnButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    NSString *imageName = [NSString stringWithFormat:@"%d", number];
+    NSString *imageName = [NSString stringWithFormat:@"%ld", (long)number];
     NSString *altImageName = [NSString stringWithFormat:@"%@-selected", imageName];
     [returnButton setBackgroundImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     [returnButton setBackgroundImage:[UIImage imageNamed:altImageName] forState:UIControlStateHighlighted];

@@ -287,7 +287,7 @@ typedef enum {
     NSInteger startingPoint = 11;
     NSInteger endingPoint = 15;
     
-    for (int i = startingPoint; i < endingPoint; i++)
+    for (NSInteger i = startingPoint; i < endingPoint; i++)
     {
         if ([[relevantVeiw viewWithTag:i] isKindOfClass:[UIImageView class]])
         {
@@ -341,7 +341,7 @@ typedef enum {
 	
     UIButton *digitButton = (UIButton *)sender;
     
-    NSString *digitAsString = [NSString stringWithFormat:@"%d", digitButton.tag];
+    NSString *digitAsString = [NSString stringWithFormat:@"%ld", (long)digitButton.tag];
 	
     if ([[ipadView viewWithTag:self.currentPin.length + 11] isKindOfClass:[UIImageView class]])
     {
@@ -436,7 +436,7 @@ typedef enum {
 {
     
     
-	ipadView.remainingAttemptsLabel.text = [NSString stringWithFormat:@"%d Attempts Remaining", remainingAttempts];
+	ipadView.remainingAttemptsLabel.text = [NSString stringWithFormat:@"%ld Attempts Remaining", (long)remainingAttempts];
 	if (ipadView.errorbackView.alpha == 0.0f)
 	{
 		[UIView animateWithDuration:0.4f animations:^{
@@ -449,7 +449,7 @@ typedef enum {
 - (void)failedFinalAttempt
 {
     
-	ipadView.remainingAttemptsLabel.text = [NSString stringWithFormat:@"%d Failed Passcode Attempts", self.attempts];
+	ipadView.remainingAttemptsLabel.text = [NSString stringWithFormat:@"%ld Failed Passcode Attempts", (long)self.attempts];
 	if (ipadView.errorbackView.alpha == 0.0f)
 	{
 		[UIView animateWithDuration:0.4f animations:^{
