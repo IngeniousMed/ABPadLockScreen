@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ABPadLockScreenController">
@@ -25,7 +25,7 @@
                             <rect key="frame" x="110" y="317" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" backgroundImage="0.png">
+                            <state key="normal" backgroundImage="button_0.png">
                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -41,7 +41,7 @@
                             <rect key="frame" x="32" y="83" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" backgroundImage="1.png">
+                            <state key="normal" backgroundImage="button_1.png">
                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -57,7 +57,7 @@
                             <rect key="frame" x="110" y="83" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" backgroundImage="2.png">
+                            <state key="normal" backgroundImage="button_2.png">
                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -73,7 +73,7 @@
                             <rect key="frame" x="188" y="83" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" backgroundImage="3.png">
+                            <state key="normal" backgroundImage="button_3.png">
                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -89,7 +89,7 @@
                             <rect key="frame" x="32" y="161" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" backgroundImage="4.png">
+                            <state key="normal" backgroundImage="button_4.png">
                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -105,7 +105,7 @@
                             <rect key="frame" x="110" y="161" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" backgroundImage="5.png">
+                            <state key="normal" backgroundImage="button_5.png">
                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -121,7 +121,7 @@
                             <rect key="frame" x="188" y="161" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" backgroundImage="6.png">
+                            <state key="normal" backgroundImage="button_6.png">
                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -137,7 +137,7 @@
                             <rect key="frame" x="32" y="239" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" backgroundImage="7.png">
+                            <state key="normal" backgroundImage="button_7.png">
                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -153,7 +153,7 @@
                             <rect key="frame" x="110" y="239" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" backgroundImage="8.png">
+                            <state key="normal" backgroundImage="button_8.png">
                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -169,7 +169,7 @@
                             <rect key="frame" x="188" y="239" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" backgroundImage="9.png">
+                            <state key="normal" backgroundImage="button_9.png">
                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -218,19 +218,19 @@
                             <rect key="frame" x="15" y="-1" width="268" height="72"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" tag="13" contentMode="scaleToFill" image="EntryBox.png" id="61">
+                                <imageView userInteractionEnabled="NO" tag="13" contentMode="scaleToFill" image="small_circle.png" id="61">
                                     <rect key="frame" x="140" y="37" width="13" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" tag="12" contentMode="scaleToFill" image="EntryBox.png" id="62">
+                                <imageView userInteractionEnabled="NO" tag="12" contentMode="scaleToFill" image="small_circle.png" id="62">
                                     <rect key="frame" x="105" y="37" width="13" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" tag="14" contentMode="scaleToFill" image="EntryBox.png" id="63">
+                                <imageView userInteractionEnabled="NO" tag="14" contentMode="scaleToFill" image="small_circle.png" id="63">
                                     <rect key="frame" x="170" y="37" width="13" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" tag="11" contentMode="scaleToFill" image="EntryBox.png" id="60">
+                                <imageView userInteractionEnabled="NO" tag="11" contentMode="scaleToFill" image="small_circle.png" id="60">
                                     <rect key="frame" x="73" y="37" width="13" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
@@ -242,7 +242,7 @@
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.69521285079999995" green="0.0" blue="0.0075437590489999999" alpha="1" colorSpace="calibratedRGB"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <connections>
                 <outlet property="back" destination="15" id="38"/>
                 <outlet property="box1" destination="60" id="64"/>
@@ -266,25 +266,30 @@
     </objects>
     <resources>
         <image name="0-selected.png" width="75" height="75"/>
-        <image name="0.png" width="76" height="75"/>
         <image name="1-selected.png" width="75" height="75"/>
-        <image name="1.png" width="76" height="75"/>
         <image name="2-selected.png" width="75" height="75"/>
-        <image name="2.png" width="76" height="75"/>
         <image name="3-selected.png" width="75" height="75"/>
-        <image name="3.png" width="76" height="75"/>
         <image name="4-selected.png" width="75" height="75"/>
-        <image name="4.png" width="76" height="75"/>
         <image name="5-selected.png" width="75" height="75"/>
-        <image name="5.png" width="76" height="75"/>
         <image name="6-selected.png" width="75" height="75"/>
-        <image name="6.png" width="76" height="75"/>
         <image name="7-selected.png" width="106" height="54"/>
-        <image name="7.png" width="76" height="75"/>
         <image name="8-selected.png" width="75" height="75"/>
-        <image name="8.png" width="76" height="75"/>
         <image name="9-selected.png" width="75" height="75"/>
-        <image name="9.png" width="76" height="75"/>
-        <image name="EntryBox.png" width="13" height="13"/>
+        <image name="button_0.png" width="76" height="75"/>
+        <image name="button_1.png" width="76" height="75"/>
+        <image name="button_2.png" width="76" height="75"/>
+        <image name="button_3.png" width="76" height="75"/>
+        <image name="button_4.png" width="76" height="75"/>
+        <image name="button_5.png" width="76" height="75"/>
+        <image name="button_6.png" width="76" height="75"/>
+        <image name="button_7.png" width="76" height="75"/>
+        <image name="button_8.png" width="76" height="75"/>
+        <image name="button_9.png" width="76" height="75"/>
+        <image name="small_circle.png" width="13" height="13"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

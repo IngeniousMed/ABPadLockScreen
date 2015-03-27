@@ -28,10 +28,10 @@
         self.hiddenTextField.userInteractionEnabled = YES;
         self.hiddenTextField.text = @"####";        
         
-        self.box1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"EntryBox"]];
-        self.box2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"EntryBox"]];
-        self.box3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"EntryBox"]];
-        self.box4 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"EntryBox"]];
+        self.box1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"small_circle.png"]];
+        self.box2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"small_circle.png"]];
+        self.box3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"small_circle.png"]];
+        self.box4 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"small_circle.png"]];
         
         self.box1.tag = 1;
         self.box2.tag = 2;

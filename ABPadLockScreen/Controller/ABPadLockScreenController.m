@@ -292,7 +292,7 @@ typedef enum {
         if ([[relevantVeiw viewWithTag:i] isKindOfClass:[UIImageView class]])
         {
             UIImageView *relevantPinImage = (UIImageView *)[relevantVeiw viewWithTag:i];
-            relevantPinImage.image = [UIImage imageNamed:@"EntryBox"];
+            relevantPinImage.image = [UIImage imageNamed:@"small_circle.png"];
         }
     }
 }
@@ -346,7 +346,7 @@ typedef enum {
     if ([[ipadView viewWithTag:self.currentPin.length + 11] isKindOfClass:[UIImageView class]])
     {
         UIImageView *relevantPinImage = (UIImageView *)[ipadView viewWithTag:self.currentPin.length + 11];
-        relevantPinImage.image = [UIImage imageNamed:@"EntryBox_entry"];
+        relevantPinImage.image = [UIImage imageNamed:@"small_circle_filled.png"];
     }
     
     self.currentPin = [NSString stringWithFormat:@"%@%@", self.currentPin, digitAsString];
@@ -360,7 +360,7 @@ typedef enum {
     if ([[ipadView viewWithTag:self.currentPin.length + 10] isKindOfClass:[UIImageView class]])
     {
         UIImageView *relevantPinImage = (UIImageView *)[ipadView viewWithTag:self.currentPin.length + 10];
-        relevantPinImage.image = [UIImage imageNamed:@"EntryBox"];
+        relevantPinImage.image = [UIImage imageNamed:@"small_circle.png"];
     }
     
     if (self.currentPin.length > 0)
