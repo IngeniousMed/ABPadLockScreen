@@ -177,10 +177,10 @@ typedef enum {
 		
 		if([defaultContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error])
 		{
-			NSUserDefaults *defaults      = [NSUserDefaults standardUserDefaults];
+			NSUserDefaults *defaults      = [NSUserDefaults sharedUserDefaults];
 			NSString       *lastGroupName = [defaults stringForKey:kUserDefaultsKeyGroupName];
 			NSString       *lastUserId    = [defaults stringForKey:kUserDefaultsKeyUserName];
-			NSString *passcode = [SFHFKeychainUtils getPasswordForUsername:[NSString stringWithFormat:@"%@||%@||%@", lastGroupName, lastUserId, kIngeniousAppDomainIdentifier] andServiceName:kIngeniousAppDomainIdentifier error:&error];
+			NSString *passcode = [SFHFKeychainUtils getPasswordForUsername:[NSString stringWithFormat:@"%@||%@||%@", lastGroupName, lastUserId, kIngeniousAppDomainIdentifier] andServiceName:kIngeniousAppDomainIdentifier error:&error sharedKeychain:YES];
 			
 			defaultContext.localizedFallbackTitle = @"Enter PIN";
 			if(passcode.length > 0)
@@ -382,10 +382,10 @@ typedef enum {
 			BOOL success = [self.delegate unlockWithCode:self.currentPin];
 			if (success)
 			{
-				NSUserDefaults *defaults      = [NSUserDefaults standardUserDefaults];
+				NSUserDefaults *defaults      = [NSUserDefaults sharedUserDefaults];
 				NSString       *lastGroupName = [defaults stringForKey:kUserDefaultsKeyGroupName];
 				NSString       *lastUserId    = [defaults stringForKey:kUserDefaultsKeyUserName];
-				[SFHFKeychainUtils storeUsername:[NSString stringWithFormat:@"%@||%@||%@", lastGroupName, lastUserId, kIngeniousAppDomainIdentifier] andPassword:self.secondPinEntry forServiceName:kIngeniousAppDomainIdentifier updateExisting:YES error:nil];
+				[SFHFKeychainUtils storeUsername:[NSString stringWithFormat:@"%@||%@||%@", lastGroupName, lastUserId, kIngeniousAppDomainIdentifier] andPassword:self.secondPinEntry forServiceName:kIngeniousAppDomainIdentifier updateExisting:YES error:nil sharedKeychain:YES];
 
 				[self resetErrorLabels];
 				[self resetLockScreen];
@@ -407,10 +407,10 @@ typedef enum {
 			self.currentPin = @"";
 			if ([self.firstPinEntry isEqualToString:self.secondPinEntry]) {
 				
-				NSUserDefaults *defaults      = [NSUserDefaults standardUserDefaults];
+				NSUserDefaults *defaults      = [NSUserDefaults sharedUserDefaults];
 				NSString       *lastGroupName = [defaults stringForKey:kUserDefaultsKeyGroupName];
 				NSString       *lastUserId    = [defaults stringForKey:kUserDefaultsKeyUserName];
-				[SFHFKeychainUtils storeUsername:[NSString stringWithFormat:@"%@||%@||%@", lastGroupName, lastUserId, kIngeniousAppDomainIdentifier] andPassword:self.secondPinEntry forServiceName:kIngeniousAppDomainIdentifier updateExisting:YES error:nil];
+				[SFHFKeychainUtils storeUsername:[NSString stringWithFormat:@"%@||%@||%@", lastGroupName, lastUserId, kIngeniousAppDomainIdentifier] andPassword:self.secondPinEntry forServiceName:kIngeniousAppDomainIdentifier updateExisting:YES error:nil sharedKeychain:YES];
 
 				if (self.setupDelegate && [self.setupDelegate respondsToSelector:@selector(setupWasSuccessfulWithCode:)]) {
 					[self.setupDelegate setupWasSuccessfulWithCode:self.secondPinEntry];
